@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>jsx syntax check</title>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script></head>
+<body><pre id="out">running...</pre>
+<script>
+const FILES = [
+  "lsp-corporate-admin-portal.jsx","lsp-course-player.jsx","lsp-employer-verifier-portal.jsx",
+  "lsp-operator-dashboard.jsx","lsp-participant-dashboard.jsx","lsp-public-verification-page.jsx",
+  "lsp-training-catalog.jsx","lsp-tutor-examiner-review.jsx","positions-master-data.js",
+];
+(async () => {
+  const results = [];
+  for (const f of FILES) {
+    try {
+      const src = await (await fetch("/src/" + f)).text();
+      Babel.transform(src, { presets: [["react"]], sourceType: "module", filename: f });
+      results.push("OK    " + f);
+    } catch (e) {
+      results.push("FAIL  " + f + " :: " + String(e.message || e).split("\n")[0]);
+    }
+  }
+  document.getElementById("out").textContent = results.join("\n") + "\nDONE";
+})();
+</script></body></html>

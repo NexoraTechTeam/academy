@@ -1,0 +1,1351 @@
+{
+  "version": 1,
+  "description": "Master data for the Position dropdown. `hrFamily` drives Talent Search upsell targeting. `system: true` entries ship with the app and cannot be deleted; entries added by an Operator or Super Admin have system: false. Deactivate (active: false) instead of deleting so historical user records keep resolving.",
+  "categories": [
+    "Human Resources",
+    "Executive & General Management",
+    "Quality, Compliance & Risk",
+    "Health, Safety & Environment",
+    "Finance & Accounting",
+    "Operations & Production",
+    "Supply Chain & Procurement",
+    "Sales & Marketing",
+    "Information Technology",
+    "Engineering & Technical",
+    "Project Management",
+    "Legal & Corporate Affairs",
+    "Education & Professional Services",
+    "Administration & Support",
+    "Early Career"
+  ],
+  "positions": [
+    {
+      "id": "chief-human-resources-officer-chro",
+      "label": "Chief Human Resources Officer (CHRO)",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 1,
+      "system": true
+    },
+    {
+      "id": "hr-director",
+      "label": "HR Director",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 2,
+      "system": true
+    },
+    {
+      "id": "hr-manager",
+      "label": "HR Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 3,
+      "system": true
+    },
+    {
+      "id": "hr-business-partner",
+      "label": "HR Business Partner",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 4,
+      "system": true
+    },
+    {
+      "id": "hr-generalist",
+      "label": "HR Generalist",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 5,
+      "system": true
+    },
+    {
+      "id": "hr-officer",
+      "label": "HR Officer",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 6,
+      "system": true
+    },
+    {
+      "id": "hr-staff",
+      "label": "HR Staff",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 7,
+      "system": true
+    },
+    {
+      "id": "people-operations-manager",
+      "label": "People Operations Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 8,
+      "system": true
+    },
+    {
+      "id": "talent-acquisition-manager",
+      "label": "Talent Acquisition Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 9,
+      "system": true
+    },
+    {
+      "id": "talent-acquisition-lead",
+      "label": "Talent Acquisition Lead",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 10,
+      "system": true
+    },
+    {
+      "id": "recruitment-specialist",
+      "label": "Recruitment Specialist",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 11,
+      "system": true
+    },
+    {
+      "id": "recruiter",
+      "label": "Recruiter",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 12,
+      "system": true
+    },
+    {
+      "id": "learning-development-manager",
+      "label": "Learning & Development Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 13,
+      "system": true
+    },
+    {
+      "id": "learning-development-specialist",
+      "label": "Learning & Development Specialist",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 14,
+      "system": true
+    },
+    {
+      "id": "training-manager",
+      "label": "Training Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 15,
+      "system": true
+    },
+    {
+      "id": "training-officer",
+      "label": "Training Officer",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 16,
+      "system": true
+    },
+    {
+      "id": "compensation-benefits-manager",
+      "label": "Compensation & Benefits Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 17,
+      "system": true
+    },
+    {
+      "id": "organizational-development-manager",
+      "label": "Organizational Development Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 18,
+      "system": true
+    },
+    {
+      "id": "industrial-relations-manager",
+      "label": "Industrial Relations Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 19,
+      "system": true
+    },
+    {
+      "id": "employee-relations-officer",
+      "label": "Employee Relations Officer",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 20,
+      "system": true
+    },
+    {
+      "id": "hris-analyst",
+      "label": "HRIS Analyst",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 21,
+      "system": true
+    },
+    {
+      "id": "hr-consultant",
+      "label": "HR Consultant",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 22,
+      "system": true
+    },
+    {
+      "id": "freelance-hr-competency-consultant",
+      "label": "Freelance HR & Competency Consultant",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 23,
+      "system": true
+    },
+    {
+      "id": "competency-assessor",
+      "label": "Competency Assessor",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 24,
+      "system": true
+    },
+    {
+      "id": "assessment-center-officer",
+      "label": "Assessment Center Officer",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 25,
+      "system": true
+    },
+    {
+      "id": "owner-founder",
+      "label": "Owner / Founder",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 26,
+      "system": true
+    },
+    {
+      "id": "chief-executive-officer-ceo",
+      "label": "Chief Executive Officer (CEO)",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 27,
+      "system": true
+    },
+    {
+      "id": "chief-operating-officer-coo",
+      "label": "Chief Operating Officer (COO)",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 28,
+      "system": true
+    },
+    {
+      "id": "managing-director",
+      "label": "Managing Director",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 29,
+      "system": true
+    },
+    {
+      "id": "director",
+      "label": "Director",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 30,
+      "system": true
+    },
+    {
+      "id": "general-manager",
+      "label": "General Manager",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 31,
+      "system": true
+    },
+    {
+      "id": "branch-manager",
+      "label": "Branch Manager",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 32,
+      "system": true
+    },
+    {
+      "id": "department-head",
+      "label": "Department Head",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 33,
+      "system": true
+    },
+    {
+      "id": "business-unit-head",
+      "label": "Business Unit Head",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 34,
+      "system": true
+    },
+    {
+      "id": "quality-assurance-manager",
+      "label": "Quality Assurance Manager",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 35,
+      "system": true
+    },
+    {
+      "id": "quality-control-manager",
+      "label": "Quality Control Manager",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 36,
+      "system": true
+    },
+    {
+      "id": "qa-officer",
+      "label": "QA Officer",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 37,
+      "system": true
+    },
+    {
+      "id": "qc-officer",
+      "label": "QC Officer",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 38,
+      "system": true
+    },
+    {
+      "id": "quality-management-system-qms-officer",
+      "label": "Quality Management System (QMS) Officer",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 39,
+      "system": true
+    },
+    {
+      "id": "internal-auditor",
+      "label": "Internal Auditor",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 40,
+      "system": true
+    },
+    {
+      "id": "lead-auditor",
+      "label": "Lead Auditor",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 41,
+      "system": true
+    },
+    {
+      "id": "compliance-manager",
+      "label": "Compliance Manager",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 42,
+      "system": true
+    },
+    {
+      "id": "compliance-officer",
+      "label": "Compliance Officer",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 43,
+      "system": true
+    },
+    {
+      "id": "risk-management-manager",
+      "label": "Risk Management Manager",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 44,
+      "system": true
+    },
+    {
+      "id": "risk-analyst",
+      "label": "Risk Analyst",
+      "category": "Quality, Compliance & Risk",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 45,
+      "system": true
+    },
+    {
+      "id": "hse-manager",
+      "label": "HSE Manager",
+      "category": "Health, Safety & Environment",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 46,
+      "system": true
+    },
+    {
+      "id": "hse-supervisor",
+      "label": "HSE Supervisor",
+      "category": "Health, Safety & Environment",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 47,
+      "system": true
+    },
+    {
+      "id": "hse-officer",
+      "label": "HSE Officer",
+      "category": "Health, Safety & Environment",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 48,
+      "system": true
+    },
+    {
+      "id": "safety-engineer",
+      "label": "Safety Engineer",
+      "category": "Health, Safety & Environment",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 49,
+      "system": true
+    },
+    {
+      "id": "environmental-officer",
+      "label": "Environmental Officer",
+      "category": "Health, Safety & Environment",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 50,
+      "system": true
+    },
+    {
+      "id": "occupational-health-officer",
+      "label": "Occupational Health Officer",
+      "category": "Health, Safety & Environment",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 51,
+      "system": true
+    },
+    {
+      "id": "chief-financial-officer-cfo",
+      "label": "Chief Financial Officer (CFO)",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 52,
+      "system": true
+    },
+    {
+      "id": "finance-director",
+      "label": "Finance Director",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 53,
+      "system": true
+    },
+    {
+      "id": "finance-manager",
+      "label": "Finance Manager",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 54,
+      "system": true
+    },
+    {
+      "id": "accounting-manager",
+      "label": "Accounting Manager",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 55,
+      "system": true
+    },
+    {
+      "id": "accountant",
+      "label": "Accountant",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 56,
+      "system": true
+    },
+    {
+      "id": "finance-staff",
+      "label": "Finance Staff",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 57,
+      "system": true
+    },
+    {
+      "id": "internal-audit-manager",
+      "label": "Internal Audit Manager",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 58,
+      "system": true
+    },
+    {
+      "id": "tax-manager",
+      "label": "Tax Manager",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 59,
+      "system": true
+    },
+    {
+      "id": "tax-officer",
+      "label": "Tax Officer",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 60,
+      "system": true
+    },
+    {
+      "id": "treasury-officer",
+      "label": "Treasury Officer",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 61,
+      "system": true
+    },
+    {
+      "id": "budget-planning-analyst",
+      "label": "Budget & Planning Analyst",
+      "category": "Finance & Accounting",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 62,
+      "system": true
+    },
+    {
+      "id": "operations-director",
+      "label": "Operations Director",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 63,
+      "system": true
+    },
+    {
+      "id": "operations-manager",
+      "label": "Operations Manager",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 64,
+      "system": true
+    },
+    {
+      "id": "plant-manager",
+      "label": "Plant Manager",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 65,
+      "system": true
+    },
+    {
+      "id": "production-manager",
+      "label": "Production Manager",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 66,
+      "system": true
+    },
+    {
+      "id": "production-supervisor",
+      "label": "Production Supervisor",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 67,
+      "system": true
+    },
+    {
+      "id": "production-staff",
+      "label": "Production Staff",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 68,
+      "system": true
+    },
+    {
+      "id": "maintenance-manager",
+      "label": "Maintenance Manager",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 69,
+      "system": true
+    },
+    {
+      "id": "maintenance-supervisor",
+      "label": "Maintenance Supervisor",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 70,
+      "system": true
+    },
+    {
+      "id": "facility-manager",
+      "label": "Facility Manager",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 71,
+      "system": true
+    },
+    {
+      "id": "service-delivery-manager",
+      "label": "Service Delivery Manager",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 72,
+      "system": true
+    },
+    {
+      "id": "supply-chain-manager",
+      "label": "Supply Chain Manager",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 73,
+      "system": true
+    },
+    {
+      "id": "procurement-manager",
+      "label": "Procurement Manager",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 74,
+      "system": true
+    },
+    {
+      "id": "purchasing-officer",
+      "label": "Purchasing Officer",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 75,
+      "system": true
+    },
+    {
+      "id": "logistics-manager",
+      "label": "Logistics Manager",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 76,
+      "system": true
+    },
+    {
+      "id": "warehouse-manager",
+      "label": "Warehouse Manager",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 77,
+      "system": true
+    },
+    {
+      "id": "warehouse-supervisor",
+      "label": "Warehouse Supervisor",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 78,
+      "system": true
+    },
+    {
+      "id": "inventory-controller",
+      "label": "Inventory Controller",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 79,
+      "system": true
+    },
+    {
+      "id": "import-export-officer",
+      "label": "Import & Export Officer",
+      "category": "Supply Chain & Procurement",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 80,
+      "system": true
+    },
+    {
+      "id": "sales-director",
+      "label": "Sales Director",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 81,
+      "system": true
+    },
+    {
+      "id": "sales-manager",
+      "label": "Sales Manager",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 82,
+      "system": true
+    },
+    {
+      "id": "sales-supervisor",
+      "label": "Sales Supervisor",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 83,
+      "system": true
+    },
+    {
+      "id": "sales-executive",
+      "label": "Sales Executive",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 84,
+      "system": true
+    },
+    {
+      "id": "account-executive",
+      "label": "Account Executive",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 85,
+      "system": true
+    },
+    {
+      "id": "business-development-manager",
+      "label": "Business Development Manager",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 86,
+      "system": true
+    },
+    {
+      "id": "marketing-director",
+      "label": "Marketing Director",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 87,
+      "system": true
+    },
+    {
+      "id": "marketing-manager",
+      "label": "Marketing Manager",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 88,
+      "system": true
+    },
+    {
+      "id": "digital-marketing-specialist",
+      "label": "Digital Marketing Specialist",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 89,
+      "system": true
+    },
+    {
+      "id": "brand-manager",
+      "label": "Brand Manager",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 90,
+      "system": true
+    },
+    {
+      "id": "customer-service-manager",
+      "label": "Customer Service Manager",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 91,
+      "system": true
+    },
+    {
+      "id": "customer-service-officer",
+      "label": "Customer Service Officer",
+      "category": "Sales & Marketing",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 92,
+      "system": true
+    },
+    {
+      "id": "chief-information-officer-cio",
+      "label": "Chief Information Officer (CIO)",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 93,
+      "system": true
+    },
+    {
+      "id": "it-director",
+      "label": "IT Director",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 94,
+      "system": true
+    },
+    {
+      "id": "it-manager",
+      "label": "IT Manager",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 95,
+      "system": true
+    },
+    {
+      "id": "it-support-officer",
+      "label": "IT Support Officer",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 96,
+      "system": true
+    },
+    {
+      "id": "system-administrator",
+      "label": "System Administrator",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 97,
+      "system": true
+    },
+    {
+      "id": "network-engineer",
+      "label": "Network Engineer",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 98,
+      "system": true
+    },
+    {
+      "id": "software-engineer",
+      "label": "Software Engineer",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 99,
+      "system": true
+    },
+    {
+      "id": "data-analyst",
+      "label": "Data Analyst",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 100,
+      "system": true
+    },
+    {
+      "id": "data-scientist",
+      "label": "Data Scientist",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 101,
+      "system": true
+    },
+    {
+      "id": "database-administrator",
+      "label": "Database Administrator",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 102,
+      "system": true
+    },
+    {
+      "id": "it-security-compliance-lead",
+      "label": "IT Security & Compliance Lead",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 103,
+      "system": true
+    },
+    {
+      "id": "information-security-officer",
+      "label": "Information Security Officer",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 104,
+      "system": true
+    },
+    {
+      "id": "devops-engineer",
+      "label": "DevOps Engineer",
+      "category": "Information Technology",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 105,
+      "system": true
+    },
+    {
+      "id": "engineering-manager",
+      "label": "Engineering Manager",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 106,
+      "system": true
+    },
+    {
+      "id": "civil-engineer",
+      "label": "Civil Engineer",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 107,
+      "system": true
+    },
+    {
+      "id": "mechanical-engineer",
+      "label": "Mechanical Engineer",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 108,
+      "system": true
+    },
+    {
+      "id": "electrical-engineer",
+      "label": "Electrical Engineer",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 109,
+      "system": true
+    },
+    {
+      "id": "industrial-engineer",
+      "label": "Industrial Engineer",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 110,
+      "system": true
+    },
+    {
+      "id": "process-engineer",
+      "label": "Process Engineer",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 111,
+      "system": true
+    },
+    {
+      "id": "technician",
+      "label": "Technician",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 112,
+      "system": true
+    },
+    {
+      "id": "site-supervisor",
+      "label": "Site Supervisor",
+      "category": "Engineering & Technical",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 113,
+      "system": true
+    },
+    {
+      "id": "program-director",
+      "label": "Program Director",
+      "category": "Project Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 114,
+      "system": true
+    },
+    {
+      "id": "project-manager",
+      "label": "Project Manager",
+      "category": "Project Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 115,
+      "system": true
+    },
+    {
+      "id": "project-coordinator",
+      "label": "Project Coordinator",
+      "category": "Project Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 116,
+      "system": true
+    },
+    {
+      "id": "project-control-officer",
+      "label": "Project Control Officer",
+      "category": "Project Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 117,
+      "system": true
+    },
+    {
+      "id": "scrum-master",
+      "label": "Scrum Master",
+      "category": "Project Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 118,
+      "system": true
+    },
+    {
+      "id": "legal-manager",
+      "label": "Legal Manager",
+      "category": "Legal & Corporate Affairs",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 119,
+      "system": true
+    },
+    {
+      "id": "legal-officer",
+      "label": "Legal Officer",
+      "category": "Legal & Corporate Affairs",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 120,
+      "system": true
+    },
+    {
+      "id": "corporate-secretary",
+      "label": "Corporate Secretary",
+      "category": "Legal & Corporate Affairs",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 121,
+      "system": true
+    },
+    {
+      "id": "government-relations-officer",
+      "label": "Government Relations Officer",
+      "category": "Legal & Corporate Affairs",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 122,
+      "system": true
+    },
+    {
+      "id": "public-relations-manager",
+      "label": "Public Relations Manager",
+      "category": "Legal & Corporate Affairs",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 123,
+      "system": true
+    },
+    {
+      "id": "trainer-instructor",
+      "label": "Trainer / Instructor",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 124,
+      "system": true
+    },
+    {
+      "id": "senior-trainer",
+      "label": "Senior Trainer",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 125,
+      "system": true
+    },
+    {
+      "id": "lecturer-dosen",
+      "label": "Lecturer / Dosen",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 126,
+      "system": true
+    },
+    {
+      "id": "academic-coordinator",
+      "label": "Academic Coordinator",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 127,
+      "system": true
+    },
+    {
+      "id": "researcher",
+      "label": "Researcher",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 128,
+      "system": true
+    },
+    {
+      "id": "management-consultant",
+      "label": "Management Consultant",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 129,
+      "system": true
+    },
+    {
+      "id": "independent-consultant",
+      "label": "Independent Consultant",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 130,
+      "system": true
+    },
+    {
+      "id": "subject-matter-expert",
+      "label": "Subject Matter Expert",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 131,
+      "system": true
+    },
+    {
+      "id": "office-manager",
+      "label": "Office Manager",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 132,
+      "system": true
+    },
+    {
+      "id": "executive-assistant",
+      "label": "Executive Assistant",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 133,
+      "system": true
+    },
+    {
+      "id": "administrative-officer",
+      "label": "Administrative Officer",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 134,
+      "system": true
+    },
+    {
+      "id": "general-affairs-manager",
+      "label": "General Affairs Manager",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 135,
+      "system": true
+    },
+    {
+      "id": "general-affairs-officer",
+      "label": "General Affairs Officer",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 136,
+      "system": true
+    },
+    {
+      "id": "receptionist",
+      "label": "Receptionist",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 137,
+      "system": true
+    },
+    {
+      "id": "student",
+      "label": "Student",
+      "category": "Early Career",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 138,
+      "system": true
+    },
+    {
+      "id": "fresh-graduate",
+      "label": "Fresh Graduate",
+      "category": "Early Career",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 139,
+      "system": true
+    },
+    {
+      "id": "intern-apprentice",
+      "label": "Intern / Apprentice",
+      "category": "Early Career",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 140,
+      "system": true
+    },
+    {
+      "id": "hr-l-d-manager",
+      "label": "HR & L&D Manager",
+      "category": "Human Resources",
+      "hrFamily": true,
+      "active": true,
+      "sortOrder": 141,
+      "system": true
+    },
+    {
+      "id": "platform-operations-lead",
+      "label": "Platform Operations Lead",
+      "category": "Operations & Production",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 142,
+      "system": true
+    },
+    {
+      "id": "senior-tutor-certified-examiner",
+      "label": "Senior Tutor & Certified Examiner",
+      "category": "Education & Professional Services",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 143,
+      "system": true
+    },
+    {
+      "id": "manager-general",
+      "label": "Manager (General)",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 144,
+      "system": true
+    },
+    {
+      "id": "supervisor-general",
+      "label": "Supervisor (General)",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 145,
+      "system": true
+    },
+    {
+      "id": "staff-general",
+      "label": "Staff (General)",
+      "category": "Administration & Support",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 146,
+      "system": true
+    },
+    {
+      "id": "head-of-academy",
+      "label": "Head of Academy",
+      "category": "Executive & General Management",
+      "hrFamily": false,
+      "active": true,
+      "sortOrder": 147,
+      "system": true
+    }
+  ],
+  "legacyAliases": {
+    "Manager": "manager-general",
+    "Supervisor": "supervisor-general",
+    "Staff": "staff-general"
+  }
+}

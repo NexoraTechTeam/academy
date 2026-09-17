@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeAcademy — Management Workspace (Preview)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+:root{--primary:#2952E3;--deep:#17307D;--cyan:#0EA5A0;--amber:#D68A1F;--sage:#2E9E5B;--crimson:#B4402E;--violet:#6D5BD0;--line:#E3E7F0;--card:#FFFFFF;--ink:#101B33;--ink60:#5B6B85;--paper:#F4F6FB}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:var(--paper);color:var(--ink);display:flex;min-height:100vh}
+aside{width:250px;flex-shrink:0;background:var(--deep);padding:20px;display:flex;flex-direction:column;gap:4px}
+.brand{display:flex;align-items:center;gap:8px;margin-bottom:22px}
+.brand .dot{width:32px;height:32px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:14px}
+.brand span{font-family:Fraunces,serif;font-weight:600;color:#fff;font-size:14px}
+aside .nav button{display:flex;width:100%;align-items:center;gap:10px;border:0;border-radius:6px;padding:9px 12px;font:500 13.5px Inter;color:rgba(255,255,255,.55);background:transparent;cursor:pointer;text-align:left}
+aside .nav button.active{background:rgba(255,255,255,.10);color:#fff}
+.acct{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:12px}
+.acct .me{display:flex;gap:9px;align-items:center;background:rgba(255,255,255,.08);border-radius:8px;padding:9px 11px}
+.acct .av{width:28px;height:28px;border-radius:50%;background:var(--violet);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.acct b{font-size:12.5px;color:#fff;display:block;line-height:1.3}
+.acct i{font-style:normal;font-size:10.5px;color:rgba(255,255,255,.55)}
+.acct .sw{margin-top:7px;font-size:10.5px;color:rgba(255,255,255,.5);line-height:1.5}
+.acct .sw a{color:rgba(255,255,255,.8);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.4);cursor:pointer}
+main{flex:1;padding:24px 30px;max-width:1200px;min-width:0}
+.crumb{font-size:12px;color:var(--ink60)}
+h1{font-family:Fraunces,serif;font-size:24px;font-weight:600;margin:1px 0 2px}
+.sub{font-size:13px;color:var(--ink60);margin-bottom:16px}
+.note{background:#FFF7E8;border:1px solid #EDD9B0;color:#7A5A18;border-radius:6px;padding:7px 12px;font-size:11.5px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:1240px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:840px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.kpi .k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink60);font-weight:600}
+.kpi .v{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;margin:6px 0 7px}
+.cmp{font-size:10.5px;line-height:1.7}
+.cmp .lab{color:var(--ink60);font-weight:600;font-size:10px}
+.cmp .ref{color:var(--ink60)}
+.up{color:var(--sage);font-weight:600}.down{color:var(--crimson);font-weight:600}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+.panel h2{font-family:Fraunces,serif;font-size:15.5px;font-weight:600}
+.panel .ps{font-size:11.5px;color:var(--ink60);margin:2px 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:1000px){.grid2{grid-template-columns:1fr}aside{display:none}}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink60);text-align:left;font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:7px 8px;border-bottom:1px solid var(--line)}
+td.mono,th.mono{font-family:'IBM Plex Mono',monospace;font-size:11.5px}
+.num{text-align:right}
+.tag{display:inline-block;border-radius:99px;padding:1px 9px;font-size:10.5px;font-weight:600}
+.legend{display:flex;gap:13px;flex-wrap:wrap;font-size:11px;color:var(--ink60);margin-top:8px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;font-style:normal}
+.bar-row{display:flex;align-items:center;gap:10px;margin:7px 0}
+.bar-row .lbl{width:246px;font-size:12.5px;flex-shrink:0}
+.bar-row .track{flex:1;background:var(--paper);border-radius:4px;height:15px;min-width:60px}
+.bar-row .fill{height:100%;border-radius:4px}
+.bar-row .val{width:120px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:11.5px;flex-shrink:0}
+.rank{width:21px;height:21px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:600;color:#fff;flex-shrink:0}
+.alerts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:1240px){.alerts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:840px){.alerts{grid-template-columns:1fr}}
+.alert{border:1px solid var(--line);border-left-width:3px;border-radius:8px;padding:11px 13px;background:var(--card)}
+.alert .t{font-size:12.5px;font-weight:600;margin-bottom:3px}
+.alert .b{font-size:11.5px;color:var(--ink60);line-height:1.55}
+.alert .go{margin-top:7px;font-size:11px;font-weight:600;background:none;border:0;padding:0;cursor:pointer;color:var(--primary)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink60);font-weight:600}
+.fg select{font:400 12.5px Inter;padding:6px 9px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);min-width:150px}
+.fg select:disabled{opacity:.4;cursor:not-allowed}
+.filters .sp{flex:1}
+.btn{font:600 12px Inter;padding:8px 13px;border:0;border-radius:6px;background:var(--primary);color:#fff;cursor:pointer}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{font:500 12.5px Inter;padding:7px 13px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink60);cursor:pointer}
+.tabs button.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.analisa{background:#F0F4FE;border:1px solid #C9D6FA;border-radius:8px;padding:12px 14px;margin-top:14px}
+.analisa h3{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);font-weight:600;margin-bottom:6px}
+.analisa ul{margin:0;padding-left:16px}
+.analisa li{font-size:12.5px;line-height:1.65;margin-bottom:3px}
+svg text{font-family:Inter,sans-serif}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<aside>
+  <div class="brand"><div class="dot">D</div><span>DeAcademy</span></div>
+  <div class="nav">
+    <button data-view="dashboard" class="active">Dashboard</button>
+    <button data-view="reports">Reports</button>
+  </div>
+  <div class="acct">
+    <div class="me"><div class="av">SD</div><div><b>Surya Dharmawan</b><i>Management · Head of Academy</i></div></div>
+    <div class="sw">Workspace lain di akun ini:<br><a>Participant</a> · <a>Operator</a></div>
+  </div>
+</aside>
+<main id="main"></main>
+<script>
+"use strict";
+const C={primary:'#2952E3',deep:'#17307D',cyan:'#0EA5A0',amber:'#D68A1F',sage:'#2E9E5B',crimson:'#B4402E',violet:'#6D5BD0',ink60:'#5B6B85',line:'#E3E7F0'};
+
+/* ============ SAMPLE DATA — 24 bulan (Sep 24 – Agu 26) ============ */
+const M=['Sep 24','Okt 24','Nov 24','Des 24','Jan 25','Feb 25','Mar 25','Apr 25','Mei 25','Jun 25','Jul 25','Agu 25',
+         'Sep 25','Okt 25','Nov 25','Des 25','Jan 26','Feb 26','Mar 26','Apr 26','Mei 26','Jun 26','Jul 26','Agu 26'];
+const NOW=23;
+const REV={
+ public_training:[195,205,190,178,225,240,255,248,270,285,295,308, 310,325,300,280,360,385,410,395,430,455,470,492],
+ self_study:[70,76,74,80,88,86,96,100,103,112,117,124, 120,132,128,140,155,150,168,175,180,196,205,218],
+ in_house:[105,88,128,112,140,120,152,135,166,158,181,196, 180,150,220,190,240,205,260,230,285,270,310,335],
+ membership:[38,40,42,43,46,48,50,52,54,57,59,62, 62,65,68,70,74,78,81,85,88,92,96,101],
+ verifier:[12,13,15,16,18,20,21,23,25,27,30,33, 28,30,33,36,40,44,47,52,56,61,67,73]};
+const STREAMS=[['public_training','Public Training',C.primary],['self_study','Self-Study',C.cyan],['in_house','In-house / Corporate',C.violet],['membership','Membership Peserta',C.amber],['verifier','Verifier (subs + report)',C.sage]];
+/* kursi public training yang dibeli PERUSAHAAN (bagian dari public_training) */
+const CORP_SEATS=[38,42,36,33,45,49,52,50,56,60,62,66, 62,68,58,54,74,80,86,82,92,98,101,108];
+const NEWP=[210,225,205,190,240,255,270,262,281,290,310,298, 265,280,310,295,340,362,371,385,402,418,441,463];
+const REPEAT=[null,null,null,null,null,null,null,null,null,null,null,18.9, 19.2,19.0,19.6,19.1,20.4,20.9,21.3,21.0,21.8,22.4,22.9,23.4];
+const CHURN=[null,null,null,null,null,null,null,null,null,null,null,3.9, 3.8,3.7,3.9,3.6,3.5,3.4,3.3,3.4,3.2,3.1,3.2,2.8];
+
+const tot=i=>STREAMS.reduce((s,[k])=>s+REV[k][i],0);
+const corp=i=>REV.in_house[i]+CORP_SEATS[i];
+const indiv=i=>tot(i)-corp(i);
+
+const COHORT=[{cut:'≤ 1 tahun sejak pembelian terakhir',bought:412,idle:799},{cut:'1–2 tahun',bought:186,idle:702},{cut:'2–3 tahun',bought:74,idle:521},{cut:'> 3 tahun',bought:31,idle:648}];
+const TRAININGS=[
+ {n:'Competency Assessor Certification (BNSP)',cat:'Professional Certification',e:341,r:1530,cr:81,md:'6.2 mgg',pa:74,wl:23},
+ {n:'ISO 9001:2015 Quality Management',cat:'Professional Certification',e:214,r:685,cr:77,md:'4.1 mgg',pa:82,wl:9},
+ {n:'Internal Audit Fundamentals',cat:'Professional Certification',e:188,r:517,cr:85,md:'3.5 mgg',pa:88,wl:0},
+ {n:'Effective Communication for Assessors',cat:'General Development',e:44,r:42,cr:69,md:'2.2 mgg',pa:null,wl:0},
+ {n:'Project Risk Management',cat:'General Development',e:31,r:57,cr:63,md:'2.8 mgg',pa:null,wl:0},
+ {n:'Training Proposal Writing Techniques',cat:'Skill Development',e:12,r:0,cr:58,md:'2.5 mgg',pa:null,wl:0}];
+const TOP_COMP=[['Ahli K3 Umum (Sertifikasi Kemnaker)',147],['ISO 9001 Lead Auditor',122],['Competency Assessor (BNSP)',98]];
+const UNMET=[['ESG & Sustainability Reporting',63],['Halal Assurance System (HAS 23000)',48],['AI Risk & Governance',37]];
+const LOYAL=[['Dinda Pramesti','7 training · 4.2 thn · 100% on-time',94],['Rizky Ramadhan','6 training · 3.8 thn · 96% on-time',89],['Farah Azzahra','5 training · 4.5 thn · 98% on-time',87]];
+const PAYERS=[['Siti Aminah','28 invoice beruntun lunas sebelum jatuh tempo'],['Dinda Pramesti','24 invoice beruntun'],['Kevin Wijaya','21 invoice beruntun']];
+const COMPLETERS=[['Yusuf Ramadhan','3 sertifikasi, semua ≤ deadline · rata-rata 71% dari durasi median'],['Ratna Wijayanti','2 sertifikasi tepat waktu · 78% durasi median'],['Dinda Pramesti','4 sertifikasi tepat waktu · 83% durasi median']];
+const CORP_RISK=[['PT Sumber Makmur','NRR 118% · renewal 45 hari · compliance 91%','sehat'],['PT Cakra Teknologi','NRR 104% · renewal 80 hari · compliance 74%','perhatian'],['PT Andalan Niaga','NRR 62% · renewal 30 hari · compliance 41%','risiko']];
+const UPSELL=[['corporate-upsell (Team Training)',1204,9.1,1.9],['verifier-upsell (Verify Talent)',986,7.4,1.2],['agency-upsell (Manage Clients)',512,11.6,2.7]];
+
+/* ============ HELPERS ============ */
+const fmt=v=>v>=1000?'Rp '+(v/1000).toFixed(2)+' M':'Rp '+Math.round(v)+' jt';
+const pc=(a,b)=>(a-b)/b*100;
+const sign=p=>`<span class="${p>=0?'up':'down'}">${p>=0?'▲':'▼'} ${Math.abs(p).toFixed(1)}%</span>`;
+const pp=(a,b)=>`<span class="${a>=b?'up':'down'}">${a>=b?'▲':'▼'} ${Math.abs(a-b).toFixed(1)} pp</span>`;
+
+/* KPI dengan pembanding eksplisit: nilai bulan sebelumnya & bulan sama tahun lalu */
+function kpiRev(label,valFn){
+ const now=valFn(NOW),prev=valFn(NOW-1),ly=valFn(NOW-12);
+ return `<div class="kpi"><div class="k">${label} · ${M[NOW]}</div><div class="v">${fmt(now)}</div>
+  <div class="cmp"><span class="lab">MoM</span> ${sign(pc(now,prev))} <span class="ref">vs ${fmt(prev)} · ${M[NOW-1]}</span></div>
+  <div class="cmp"><span class="lab">YoY</span> ${sign(pc(now,ly))} <span class="ref">vs ${fmt(ly)} · ${M[NOW-12]}</span></div></div>`;
+}
+function kpiNum(label,arr,unit){
+ const now=arr[NOW],prev=arr[NOW-1],ly=arr[NOW-12];
+ return `<div class="kpi"><div class="k">${label} · ${M[NOW]}</div><div class="v">${now}${unit||''}</div>
+  <div class="cmp"><span class="lab">MoM</span> ${sign(pc(now,prev))} <span class="ref">vs ${prev} · ${M[NOW-1]}</span></div>
+  <div class="cmp"><span class="lab">YoY</span> ${sign(pc(now,ly))} <span class="ref">vs ${ly} · ${M[NOW-12]}</span></div></div>`;
+}
+function kpiRate(label,arr,inverse){
+ const now=arr[NOW],prev=arr[NOW-1],ly=arr[NOW-12];
+ const d=(a,b)=>{const good=inverse?a<=b:a>=b;return `<span class="${good?'up':'down'}">${a>=b?'▲':'▼'} ${Math.abs(a-b).toFixed(1)} pp</span>`;};
+ return `<div class="kpi"><div class="k">${label} · ${M[NOW]}</div><div class="v">${now.toFixed(1)}%</div>
+  <div class="cmp"><span class="lab">MoM</span> ${d(now,prev)} <span class="ref">vs ${prev.toFixed(1)}% · ${M[NOW-1]}</span></div>
+  <div class="cmp"><span class="lab">YoY</span> ${d(now,ly)} <span class="ref">vs ${ly.toFixed(1)}% · ${M[NOW-12]}</span></div></div>`;
+}
+
+/* ============ CHARTS ============ */
+function stacked(from,to){
+ const W=1080,H=240,P=42,n=to-from+1,slot=(W-P-14)/n,bw=Math.min(34,slot*0.6);
+ const max=Math.max(...Array.from({length:n},(_,j)=>tot(from+j)))*1.14;
+ let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">`;
+ for(let g=0;g<=4;g++){const y=H-28-(H-56)*g/4;s+=`<line x1="${P}" x2="${W-6}" y1="${y}" y2="${y}" stroke="${C.line}"/><text x="${P-6}" y="${y+3}" font-size="9" fill="${C.ink60}" text-anchor="end">${Math.round(max*g/4)}</text>`;}
+ for(let j=0;j<n;j++){const i=from+j,x=P+8+slot*j+(slot-bw)/2;let y=H-28;
+  STREAMS.forEach(([k,,col])=>{const h=(H-56)*REV[k][i]/max;y-=h;s+=`<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="${col}" rx="1.5"/>`;});
+  s+=`<text x="${x+bw/2}" y="${H-12}" font-size="8.5" fill="${C.ink60}" text-anchor="middle">${M[i]}</text>`;}
+ return s+'</svg>';
+}
+function groupedYoY(from,to,valFn){
+ const W=1080,H=250,P=42,n=to-from+1,slot=(W-P-14)/n,bw=Math.min(15,slot*0.3);
+ const vals=[];for(let j=0;j<n;j++){vals.push(valFn(from+j),valFn(from+j-12));}
+ const max=Math.max(...vals)*1.16;
+ let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">`;
+ for(let g=0;g<=4;g++){const y=H-30-(H-58)*g/4;s+=`<line x1="${P}" x2="${W-6}" y1="${y}" y2="${y}" stroke="${C.line}"/><text x="${P-6}" y="${y+3}" font-size="9" fill="${C.ink60}" text-anchor="end">${Math.round(max*g/4)}</text>`;}
+ for(let j=0;j<n;j++){const i=from+j,x=P+8+slot*j+(slot-bw*2-3)/2;
+  const hL=(H-58)*valFn(i-12)/max,hN=(H-58)*valFn(i)/max;
+  s+=`<rect x="${x}" y="${H-30-hL}" width="${bw}" height="${hL}" fill="${C.line}" rx="1.5"/>`;
+  s+=`<rect x="${x+bw+3}" y="${H-30-hN}" width="${bw}" height="${hN}" fill="${C.primary}" rx="1.5"/>`;
+  s+=`<text x="${x+bw+1.5}" y="${H-14}" font-size="8.5" fill="${C.ink60}" text-anchor="middle">${M[i]}</text>`;}
+ return s+'</svg>';
+}
+function hbars(rows,color,unit){
+ const max=Math.max(...rows.map(r=>r[1]));
+ return rows.map(([l,v],i)=>`<div class="bar-row"><span class="rank" style="background:${color}">${i+1}</span><span class="lbl">${l}</span><div class="track"><div class="fill" style="width:${v/max*100}%;background:${color}"></div></div><span class="val">${v} ${unit}</span></div>`).join('');
+}
+const analisa=items=>`<div class="analisa"><h3>Analisa</h3><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+
+/* ============ DASHBOARD ============ */
+function dashboard(){
+ const repeatNow=REPEAT[NOW],corpShare=corp(NOW)/tot(NOW)*100,corpShareLY=corp(NOW-12)/tot(NOW-12)*100;
+ const rec=(REV.membership[NOW]+REV.verifier[NOW])/tot(NOW)*100;
+ const c1=COHORT[0].bought/(COHORT[0].bought+COHORT[0].idle)*100, c2=COHORT[1].bought/(COHORT[1].bought+COHORT[1].idle)*100;
+ const alerts=[
+  ['risiko',C.crimson,'PT Andalan Niaga berisiko churn','NRR 62%, compliance 41%, renewal 30 hari lagi. Nilai kontrak berjalan tergolong 3 besar. Butuh intervensi account management minggu ini.','people'],
+  ['retensi',C.amber,'Repeat rate jatuh setelah tahun pertama',`Dari ${c1.toFixed(0)}% (≤1 thn) menjadi ${c2.toFixed(0)}% (1–2 thn). Sekitar 1.169 member dorman >2 thn belum tersentuh program win-back.`,'retention'],
+  ['demand',C.violet,'Permintaan tidak terlayani menumpuk',`"${UNMET[0][0]}" dicari ${UNMET[0][1]}× tanpa hasil dalam 90 hari — teratas dari 3 kata kunci kosong. Kandidat training baru.`,'demand'],
+  ['struktur',C.primary,'Porsi recurring masih tipis',`Membership + verifier hanya ${rec.toFixed(1)}% dari total revenue; ${(100-rec).toFixed(1)}% masih one-off. Porsi corporate naik ${(corpShare-corpShareLY).toFixed(1)} pp YoY menjadi ${corpShare.toFixed(1)}%.`,'revenue']];
+ return `
+ <div class="kpis">
+  ${kpiRev('Total Revenue',tot)}
+  ${kpiRev('Revenue Corporate',corp)}
+  ${kpiNum('Peserta Baru',NEWP)}
+  ${kpiRate('Repeat Rate',REPEAT)}
+  ${kpiRate('Membership Churn',CHURN,true)}
+ </div>
+ <div class="panel"><h2>Revenue per Aliran — 12 Bulan Terakhir</h2>
+  <div class="ps">Juta rupiah, stacked per bulan · sumber: orders + order_items ∪ membership_invoices ∪ verifier billing</div>
+  <div class="scroll">${stacked(NOW-11,NOW)}</div>
+  <div class="legend">${STREAMS.map(([,l,c])=>`<span><i style="background:${c}"></i>${l}</span>`).join('')}</div></div>
+ <div class="panel"><h2>Perlu Perhatian</h2><div class="ps">Terbit otomatis dari ambang batas — bukan daftar statis</div>
+  <div class="alerts">${alerts.map(([tag,col,t,b,rep])=>`<div class="alert" style="border-left-color:${col}"><span class="tag" style="background:${col}1a;color:${col}">${tag}</span><div class="t" style="margin-top:5px">${t}</div><div class="b">${b}</div><button class="go" data-go="${rep}">Lihat report →</button></div>`).join('')}</div></div>`;
+}
+
+/* ============ REPORTS ============ */
+const REPORTS={
+ revenue:{t:'Revenue',f:['period','segment'],
+  body:(f)=>{
+   const from=f.from,to=f.to,seg=f.segment;
+   const fn=seg==='corporate'?corp:seg==='individual'?indiv:tot;
+   const now=fn(to),prev=fn(to-1),ly=fn(to-12);
+   let sum=0,sumLY=0;for(let i=from;i<=to;i++){sum+=fn(i);sumLY+=fn(i-12);}
+   const rows=[];for(let i=to;i>=from;i--)rows.push([M[i],fn(i),fn(i-1),fn(i-12)]);
+   const corpShare=corp(to)/tot(to)*100,corpShareLY=corp(to-12)/tot(to-12)*100;
+   const recur=(REV.membership[to]+REV.verifier[to])/tot(to)*100;
+   return `
+   <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kpi"><div class="k">Total periode terpilih</div><div class="v">${fmt(sum)}</div>
+     <div class="cmp"><span class="lab">YoY</span> ${sign(pc(sum,sumLY))} <span class="ref">vs ${fmt(sumLY)} periode sama tahun lalu</span></div></div>
+    <div class="kpi"><div class="k">${M[to]}</div><div class="v">${fmt(now)}</div>
+     <div class="cmp"><span class="lab">MoM</span> ${sign(pc(now,prev))} <span class="ref">vs ${fmt(prev)} · ${M[to-1]}</span></div>
+     <div class="cmp"><span class="lab">YoY</span> ${sign(pc(now,ly))} <span class="ref">vs ${fmt(ly)} · ${M[to-12]}</span></div></div>
+    ${seg==='all'?`<div class="kpi"><div class="k">Porsi Corporate</div><div class="v">${corpShare.toFixed(1)}%</div>
+     <div class="cmp"><span class="lab">YoY</span> ${pp(corpShare,corpShareLY)} <span class="ref">vs ${corpShareLY.toFixed(1)}% · ${M[to-12]}</span></div></div>
+    <div class="kpi"><div class="k">Porsi Recurring</div><div class="v">${recur.toFixed(1)}%</div>
+     <div class="cmp"><span class="ref">membership + verifier subscription</span></div></div>`:''}
+   </div>
+   <div class="panel"><h2>Bulan Ini vs Bulan Sama Tahun Lalu</h2><div class="ps">Batang biru = tahun berjalan · abu-abu = bulan yang sama tahun sebelumnya${seg!=='all'?' · segmen: '+seg:''}</div>
+    <div class="scroll">${groupedYoY(from,to,fn)}</div>
+    <div class="legend"><span><i style="background:${C.primary}"></i>Tahun berjalan</span><span><i style="background:${C.line}"></i>Tahun lalu</span></div></div>
+   ${seg==='all'?`<div class="panel"><h2>Per Aliran Pendapatan</h2><div class="ps">Kontribusi tiap aliran pada ${M[to]}</div>
+    <table><tr><th>Aliran</th><th class="num mono">${M[to]}</th><th class="num mono">${M[to-1]}</th><th class="num">Δ MoM</th><th class="num mono">${M[to-12]}</th><th class="num">Δ YoY</th></tr>
+    ${STREAMS.map(([k,l,c])=>`<tr><td><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${c};margin-right:7px"></i>${l}</td><td class="num mono">${fmt(REV[k][to])}</td><td class="num mono">${fmt(REV[k][to-1])}</td><td class="num">${sign(pc(REV[k][to],REV[k][to-1]))}</td><td class="num mono">${fmt(REV[k][to-12])}</td><td class="num">${sign(pc(REV[k][to],REV[k][to-12]))}</td></tr>`).join('')}
+    <tr style="font-weight:600"><td>Total</td><td class="num mono">${fmt(tot(to))}</td><td class="num mono">${fmt(tot(to-1))}</td><td class="num">${sign(pc(tot(to),tot(to-1)))}</td><td class="num mono">${fmt(tot(to-12))}</td><td class="num">${sign(pc(tot(to),tot(to-12)))}</td></tr></table></div>`:''}
+   <div class="panel"><h2>Rincian Bulanan</h2><div class="ps">Setiap bulan dengan pembanding bulan sebelumnya dan bulan sama tahun lalu</div>
+    <table><tr><th>Bulan</th><th class="num mono">Revenue</th><th class="num mono">Bulan sebelumnya</th><th class="num">Δ MoM</th><th class="num mono">Bulan sama thn lalu</th><th class="num">Δ YoY</th></tr>
+    ${rows.map(r=>`<tr><td>${r[0]}</td><td class="num mono">${fmt(r[1])}</td><td class="num mono">${fmt(r[2])}</td><td class="num">${sign(pc(r[1],r[2]))}</td><td class="num mono">${fmt(r[3])}</td><td class="num">${sign(pc(r[1],r[3]))}</td></tr>`).join('')}</table></div>
+   ${analisa([
+     `Total periode terpilih ${fmt(sum)}, ${sign(pc(sum,sumLY))} dibanding periode sama tahun lalu (${fmt(sumLY)}).`,
+     `Corporate tumbuh ${pc(corp(to),corp(to-12)).toFixed(1)}% YoY versus individual ${pc(indiv(to),indiv(to-12)).toFixed(1)}% — porsi corporate bergerak dari ${corpShareLY.toFixed(1)}% ke ${corpShare.toFixed(1)}%. Ketergantungan pada sedikit klien besar perlu dipantau lewat report Leaderboards.`,
+     `Recurring baru ${recur.toFixed(1)}% dari total; sisanya one-off yang harus dijual ulang tiap bulan. Menaikkan porsi ini adalah tuas margin paling stabil.`,
+     `Aliran tercepat: ${(()=>{let b=STREAMS[0],bp=-1e9;STREAMS.forEach(s=>{const p=pc(REV[s[0]][to],REV[s[0]][to-12]);if(p>bp){bp=p;b=s;}});return b[1]+' ('+bp.toFixed(1)+'% YoY)';})()}.`])}`;
+  }},
+ growth:{t:'Growth',f:['period'],
+  body:(f)=>{
+   const {from,to}=f;let s=0,sly=0;for(let i=from;i<=to;i++){s+=NEWP[i];sly+=NEWP[i-12];}
+   const rows=[];for(let i=to;i>=from;i--)rows.push([M[i],NEWP[i],NEWP[i-1],NEWP[i-12]]);
+   return `<div class="kpis">${kpiNum('Peserta Baru',NEWP)}
+    <div class="kpi"><div class="k">Total periode terpilih</div><div class="v">${s}</div>
+     <div class="cmp"><span class="lab">YoY</span> ${sign(pc(s,sly))} <span class="ref">vs ${sly} periode sama tahun lalu</span></div></div>
+    <div class="kpi"><div class="k">Akun Corporate Baru · ${M[to]}</div><div class="v">4</div><div class="cmp"><span class="ref">21 YTD</span> ${sign(31.3)} <span class="ref">YoY</span></div></div>
+    <div class="kpi"><div class="k">Akun Verifier Baru · ${M[to]}</div><div class="v">7</div><div class="cmp"><span class="ref">38 YTD</span> ${sign(46.2)} <span class="ref">YoY</span></div></div></div>
+   <div class="panel"><h2>Peserta Baru — Tahun Berjalan vs Tahun Lalu</h2><div class="ps">Bulan per bulan, dibandingkan bulan yang sama tahun sebelumnya</div>
+    <div class="scroll">${groupedYoY(from,to,i=>NEWP[i])}</div>
+    <div class="legend"><span><i style="background:${C.primary}"></i>Tahun berjalan</span><span><i style="background:${C.line}"></i>Tahun lalu</span></div></div>
+   <div class="panel"><h2>Rincian Bulanan</h2>
+    <table><tr><th>Bulan</th><th class="num mono">Peserta baru</th><th class="num mono">Bulan sebelumnya</th><th class="num">Δ MoM</th><th class="num mono">Bulan sama thn lalu</th><th class="num">Δ YoY</th></tr>
+    ${rows.map(r=>`<tr><td>${r[0]}</td><td class="num mono">${r[1]}</td><td class="num mono">${r[2]}</td><td class="num">${sign(pc(r[1],r[2]))}</td><td class="num mono">${r[3]}</td><td class="num">${sign(pc(r[1],r[3]))}</td></tr>`).join('')}</table></div>
+   ${analisa([
+    `Periode terpilih menambah ${s} peserta baru, ${sign(pc(s,sly))} dibanding periode sama tahun lalu.`,
+    `Pertumbuhan akun verifier (+46.2% YTD) melampaui akun corporate (+31.3%) — sisi permintaan marketplace tumbuh lebih cepat daripada sisi pasokan talent.`,
+    `Perhatikan: pertumbuhan peserta baru tidak otomatis menjadi revenue berulang selama repeat rate masih di ${REPEAT[NOW].toFixed(1)}% (lihat report Retention).`])}`;
+  }},
+ retention:{t:'Retention',f:[],
+  body:()=>{
+   const c=COHORT.map(x=>({...x,rate:x.bought/(x.bought+x.idle)*100}));
+   return `<div class="kpis">${kpiRate('Repeat Rate',REPEAT)}${kpiRate('Membership Churn',CHURN,true)}
+    <div class="kpi"><div class="k">Bayar Tepat Waktu</div><div class="v">87.4%</div><div class="cmp"><span class="ref">invoice membership lunas ≤ jatuh tempo</span></div></div>
+    <div class="kpi"><div class="k">Member Dorman</div><div class="v">1.169</div><div class="cmp"><span class="ref">tanpa pembelian &gt; 2 tahun</span></div></div></div>
+   <div class="panel"><h2>Kohor Repeat Purchase</h2><div class="ps">Existing member yang membeli training baru vs tidak — dipotong jarak sejak pembelian terakhir</div>
+    <table><tr><th>Kohor</th><th class="num mono">Beli lagi</th><th class="num mono">Tidak beli</th><th class="num mono">Repeat rate</th><th style="width:26%"></th></tr>
+    ${c.map(x=>`<tr><td>${x.cut}</td><td class="num mono">${x.bought}</td><td class="num mono">${x.idle}</td><td class="num mono">${x.rate.toFixed(1)}%</td><td><div class="track" style="height:10px;background:var(--paper);border-radius:4px"><div style="width:${x.rate}%;height:100%;border-radius:4px;background:${x.rate>25?C.sage:x.rate>12?C.amber:C.crimson}"></div></div></td></tr>`).join('')}</table></div>
+   <div class="panel"><h2>Sertifikat & Kepatuhan</h2><div class="ps">Sertifikat lapse = pendapatan berulang yang hilang (re-assessment)</div>
+    <table><tr><th>Metrik</th><th class="num mono">Nilai</th><th>Catatan</th></tr>
+    <tr><td>Certificate lapse rate</td><td class="num mono">6.1%</td><td style="color:var(--ink60)">per tahun · target &lt; 5%</td></tr>
+    <tr><td>Sertifikat masuk grace period</td><td class="num mono">84</td><td style="color:var(--ink60)">reminder 90/30/7 hari aktif</td></tr>
+    <tr><td>Attestation due (non-CPD)</td><td class="num mono">37</td><td style="color:var(--ink60)">siklus 3 tahun</td></tr></table></div>
+   ${analisa([
+    `Repeat rate turun tajam dari ${c[0].rate.toFixed(1)}% pada tahun pertama menjadi ${c[1].rate.toFixed(1)}% di tahun kedua — penurunan ${(c[0].rate-c[1].rate).toFixed(1)} pp. Titik intervensi paling bernilai ada di bulan 9–12 sejak pembelian terakhir, sebelum kohor berpindah.`,
+    `1.169 member dorman >2 tahun setara potensi ${fmt(1169*0.12*2.5)} bila 12% berhasil dipulihkan pada harga rata-rata Rp 2,5 jt.`,
+    `Churn membership ${CHURN[NOW].toFixed(1)}% membaik ${(CHURN[NOW-12]-CHURN[NOW]).toFixed(1)} pp YoY — arah benar, tapi lapse rate sertifikat 6.1% masih di atas target 5%.`])}`;
+  }},
+ trainings:{t:'Trainings',f:['category'],
+  body:(f)=>{
+   const list=f.category==='all'?TRAININGS:TRAININGS.filter(t=>t.cat===f.category);
+   const byE=[...list].sort((a,b)=>b.e-a.e),byR=[...list].sort((a,b)=>b.r-a.r);
+   const top=byE.slice(0,3),bot=[...byE].reverse().slice(0,3);
+   return `<div class="grid2">
+    <div class="panel"><h2>Top 3 Paling Laku</h2><div class="ps">Berdasarkan enrollment 12 bulan · revenue di kolom kanan</div>
+     ${hbars(top.map(t=>[t.n,t.e]),C.sage,'peserta').replace(/<\/div><\/div>$/,'</div></div>')}
+     <table style="margin-top:10px"><tr><th>Training</th><th class="num mono">Enrollment</th><th class="num mono">Revenue</th></tr>
+     ${top.map(t=>`<tr><td>${t.n}</td><td class="num mono">${t.e}</td><td class="num mono">${t.r?fmt(t.r):'gratis'}</td></tr>`).join('')}</table></div>
+    <div class="panel"><h2>Top 3 Paling Tidak Laku</h2><div class="ps">Kandidat Revise / Discontinue di Portfolio Decision Matrix</div>
+     ${hbars(bot.map(t=>[t.n,t.e]),C.crimson,'peserta')}
+     <table style="margin-top:10px"><tr><th>Training</th><th class="num mono">Enrollment</th><th class="num mono">Revenue</th></tr>
+     ${bot.map(t=>`<tr><td>${t.n}</td><td class="num mono">${t.e}</td><td class="num mono">${t.r?fmt(t.r):'gratis'}</td></tr>`).join('')}</table></div></div>
+   <div class="panel"><h2>Kualitas & Kapasitas</h2><div class="ps">Completion, kecepatan, kelulusan percobaan pertama, dan antrean batch</div>
+    <table><tr><th>Training</th><th>Kategori</th><th class="num mono">Enroll</th><th class="num mono">Revenue</th><th class="num mono">Completion</th><th class="num mono">Median</th><th class="num mono">Pass 1st</th><th class="num mono">Waitlist</th></tr>
+    ${byR.map(t=>`<tr><td>${t.n}</td><td style="color:var(--ink60);font-size:11.5px">${t.cat}</td><td class="num mono">${t.e}</td><td class="num mono">${t.r?fmt(t.r):'—'}</td><td class="num mono">${t.cr}%</td><td class="num mono">${t.md}</td><td class="num mono">${t.pa?t.pa+'%':'—'}</td><td class="num mono">${t.wl||'—'}</td></tr>`).join('')}</table></div>
+   ${analisa([
+    `${top[0].n} menyumbang ${(top[0].r/byR.reduce((s,t)=>s+t.r,0)*100).toFixed(0)}% revenue katalog pada seleksi ini — konsentrasi tinggi pada satu produk adalah risiko sekaligus bukti product-market fit.`,
+    `Tiga training terbawah menyumbang ${bot.reduce((s,t)=>s+t.e,0)} enrollment total dengan completion rata-rata ${(bot.reduce((s,t)=>s+t.cr,0)/bot.length).toFixed(0)}% — di bawah portofolio. Rekomendasi: revisi konten atau hentikan, jangan diamkan.`,
+    `Waitlist ${TRAININGS[0].wl} orang pada ${TRAININGS[0].n} menunjukkan kapasitas batch tertinggal dari permintaan — pertimbangkan menambah batch atau format self-study.`])}`;
+  }},
+ demand:{t:'Market Demand',f:[],
+  body:()=>`
+   <div class="grid2">
+    <div class="panel"><h2>Top 3 Sertifikasi Paling Dicari</h2><div class="ps">Pencarian verifier/employer 90 hari · verifier_search_history</div>${hbars(TOP_COMP,C.primary,'pencarian')}</div>
+    <div class="panel"><h2>Top 3 Pencarian Tanpa Hasil</h2><div class="ps">Kata kunci katalog dengan 0 hasil · catalog_search_events</div>${hbars(UNMET,C.amber,'pencarian')}</div></div>
+   <div class="panel"><h2>Funnel Verifier</h2><div class="ps">Konversi marketplace 90 hari terakhir</div>
+    <div class="bar-row"><span class="lbl">Search dilakukan</span><div class="track"><div class="fill" style="width:100%;background:${C.violet}"></div></div><span class="val">1.874</span></div>
+    <div class="bar-row"><span class="lbl">→ Request full report</span><div class="track"><div class="fill" style="width:23%;background:${C.violet}"></div></div><span class="val">431 · 23%</span></div>
+    <div class="bar-row"><span class="lbl">→ Report berbayar terbit</span><div class="track"><div class="fill" style="width:14%;background:${C.violet}"></div></div><span class="val">262 · 14%</span></div></div>
+   <div class="panel"><h2>Konversi Upsell per Segmen</h2><div class="ps">upsell_impressions — evaluasi aturan targeting v3.1</div>
+    <table><tr><th>Upsell</th><th class="num mono">Impression</th><th class="num mono">Click rate</th><th class="num mono">Conversion</th></tr>
+    ${UPSELL.map(r=>`<tr><td>${r[0]}</td><td class="num mono">${r[1]}</td><td class="num mono">${r[2]}%</td><td class="num mono">${r[3]}%</td></tr>`).join('')}</table></div>
+   ${analisa([
+    `"${UNMET[0][0]}" dicari ${UNMET[0][1]}× tanpa hasil — bersama dua kata kunci lain totalnya ${UNMET.reduce((s,u)=>s+u[1],0)} pencarian gagal yang bisa dikonversi bila training-nya ada.`,
+    `Funnel verifier 23% search→request dan 14% search→report berbayar. Kebocoran terbesar di langkah pertama: banyak pencarian tidak menemukan kandidat yang cocok — sama akarnya dengan skill gap di atas.`,
+    `agency-upsell punya click rate tertinggi (11.6%) meski impression paling sedikit — segmen individu independen paling responsif; pertimbangkan memperluas targetnya.`])}`},
+ people:{t:'Leaderboards',f:[],
+  body:()=>`
+   <div class="grid2">
+    <div class="panel"><h2>Paling Loyal</h2><div class="ps">Skor komposit: training selesai (40%) + tenure (30%) + on-time payment (30%)</div>
+     <table><tr><th>#</th><th>Participant</th><th>Detail</th><th class="num mono">Skor</th></tr>
+     ${LOYAL.map((r,i)=>`<tr><td><span class="rank" style="background:${C.primary}">${i+1}</span></td><td>${r[0]}</td><td style="color:var(--ink60);font-size:11.5px">${r[1]}</td><td class="num mono">${r[2]}</td></tr>`).join('')}</table></div>
+    <div class="panel"><h2>Paling Tepat Waktu Bayar</h2><div class="ps">Streak invoice membership lunas sebelum jatuh tempo</div>
+     <table><tr><th>#</th><th>Participant</th><th>Streak</th></tr>
+     ${PAYERS.map((r,i)=>`<tr><td><span class="rank" style="background:${C.sage}">${i+1}</span></td><td>${r[0]}</td><td style="color:var(--ink60);font-size:11.5px">${r[1]}</td></tr>`).join('')}</table></div></div>
+   <div class="panel"><h2>Paling Tepat Waktu Menyelesaikan Sertifikasi</h2><div class="ps">Selesai ≤ deadline · kecepatan relatif terhadap durasi median training</div>
+    <table><tr><th>#</th><th>Participant</th><th>Detail</th></tr>
+    ${COMPLETERS.map((r,i)=>`<tr><td><span class="rank" style="background:${C.cyan}">${i+1}</span></td><td>${r[0]}</td><td style="color:var(--ink60);font-size:11.5px">${r[1]}</td></tr>`).join('')}</table></div>
+   <div class="panel"><h2>Kesehatan Akun Korporat</h2><div class="ps">NRR, jadwal renewal, compliance — sinyal churn-risk untuk account management</div>
+    <table><tr><th>Perusahaan</th><th>Detail</th><th>Status</th></tr>
+    ${CORP_RISK.map(r=>{const col=r[2]==='sehat'?C.sage:r[2]==='perhatian'?C.amber:C.crimson;return `<tr><td>${r[0]}</td><td style="color:var(--ink60);font-size:11.5px">${r[1]}</td><td><span class="tag" style="background:${col}1a;color:${col}">${r[2]}</span></td></tr>`;}).join('')}</table></div>
+   ${analisa([
+    `Tiga nama teratas loyalitas semuanya membayar tepat waktu — konfirmasi bahwa ketepatan bayar adalah proksi kuat untuk keterikatan, bukan sekadar komponen skor.`,
+    `PT Andalan Niaga: NRR 62% dengan compliance 41% dan renewal 30 hari lagi. Ini kombinasi churn paling berisiko dalam portofolio.`,
+    `Catatan metodologis: bobot skor loyalitas (40/30/30) masih asumsi awal — kalibrasi ulang setelah dua kuartal data nyata.`])}`}
+};
+const PERIODS={'12 bulan terakhir':[NOW-11,NOW],'YTD 2026 (Jan–Agu)':[16,NOW],'Kuartal berjalan':[NOW-2,NOW],'24 bulan':[12,NOW]};
+const CATS=['all','Professional Certification','General Development','Skill Development'];
+let state={view:'dashboard',report:'revenue',period:'12 bulan terakhir',segment:'all',category:'all'};
+
+function reports(){
+ const r=REPORTS[state.report],[from,to]=PERIODS[state.period];
+ const dis=k=>r.f.includes(k)?'':'disabled';
+ return `
+ <div class="tabs">${Object.entries(REPORTS).map(([k,v])=>`<button data-rep="${k}" class="${k===state.report?'active':''}">${v.t}</button>`).join('')}</div>
+ <div class="filters">
+  <div class="fg"><label>Periode</label><select id="f-period" ${dis('period')}>${Object.keys(PERIODS).map(p=>`<option ${p===state.period?'selected':''}>${p}</option>`).join('')}</select></div>
+  <div class="fg"><label>Segmen</label><select id="f-segment" ${dis('segment')}>${[['all','Semua'],['corporate','Corporate'],['individual','Individual']].map(([v,l])=>`<option value="${v}" ${v===state.segment?'selected':''}>${l}</option>`).join('')}</select></div>
+  <div class="fg"><label>Kategori training</label><select id="f-category" ${dis('category')}>${CATS.map(c=>`<option value="${c}" ${c===state.category?'selected':''}>${c==='all'?'Semua kategori':c}</option>`).join('')}</select></div>
+  <div class="sp"></div>
+  <button class="btn" id="exp">Export PDF</button>
+ </div>
+ ${r.body({from,to,segment:state.segment,category:state.category})}`;
+}
+function render(){
+ const isDash=state.view==='dashboard';
+ document.getElementById('main').innerHTML=
+  `<div class="crumb">DeAcademy · Management · Head of Academy</div>
+   <h1>${isDash?'Dashboard':'Reports'}</h1>
+   <div class="sub">${isDash?'Ringkasan eksekutif — kondisi bisnis DeAcademy per '+M[NOW]:'Analisa mendalam dengan filter — semua angka membawa pembanding MoM dan YoY'}</div>
+   <div class="note">Prototype preview — seluruh angka adalah data sampel fiksi. Definisi metrik &amp; sumber data: DATA-MODEL.md §11. Corporate Revenue = seluruh <b>orders.buyer_type = corporate</b> (in-house + kursi public training yang dibeli perusahaan).</div>
+   ${isDash?dashboard():reports()}`;
+ document.querySelectorAll('aside .nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
+ document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{state.view='reports';state.report=b.dataset.go;render();});
+ document.querySelectorAll('[data-rep]').forEach(b=>b.onclick=()=>{state.report=b.dataset.rep;render();});
+ const bind=(id,key)=>{const el=document.getElementById(id);if(el&&!el.disabled)el.onchange=()=>{state[key]=el.value;render();};};
+ bind('f-period','period');bind('f-segment','segment');bind('f-category','category');
+ const e=document.getElementById('exp');
+ if(e)e.onclick=()=>{e.textContent='Tercatat di report_generations ✓';setTimeout(()=>e.textContent='Export PDF',2000);};
+}
+document.querySelectorAll('aside .nav button').forEach(b=>b.addEventListener('click',()=>{state.view=b.dataset.view;render();}));
+render();
+</script>
+</body>
+</html>

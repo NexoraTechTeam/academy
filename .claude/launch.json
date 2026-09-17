@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lsp-academy",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "/Users/anwarsiregar/Documents/05 - Alvarhein Teknologi Investama/02 - Nexora/07 - Product/03 - One CBQA Global/01 - Academy/.claude/serve.py"
+      ],
+      "port": 4173,
+      "url": "http://localhost:4173"
+    }
+  ]
+}

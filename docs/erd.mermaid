@@ -1,0 +1,400 @@
+erDiagram
+    USERS ||--o{ USER_ROLES : has
+    USERS ||--o| COMPANIES : "belongs to (if corporate)"
+    USERS ||--o| EMPLOYEE_PROFILES : "extends (if corporate_employee)"
+    USERS ||--o{ ENROLLMENTS : enrolls
+    USERS ||--o{ CERTIFICATES : holds
+    USERS ||--o| MEMBERSHIPS : subscribes
+    USERS ||--o| PORTFOLIO_SETTINGS : configures
+    USERS ||--o{ STAFF_ASSIGNMENTS : "assigned as tutor/examiner"
+    USERS ||--o{ PROFILE_VIEWS : "is viewed via"
+    USERS ||--o{ REPORT_GENERATIONS : generates
+    USERS }o--|| POSITIONS : "holds position"
+    USERS ||--o{ AUDIT_LOG : "acts (actor)"
+    USERS ||--o{ TRAINING_WAITLISTS : joins
+    USERS ||--o{ UPSELL_IMPRESSIONS : "is shown"
+    USERS ||--o{ COMPLIANCE_REMINDERS : receives
+    USERS ||--o{ ORDERS : places
+    COMPANIES ||--o{ ORDERS : "purchases (corporate)"
+    ORDERS ||--o{ ORDER_ITEMS : contains
+    TRAININGS ||--o{ ORDER_ITEMS : "sold via"
+    USERS ||--o{ CATALOG_SEARCH_EVENTS : searches
+
+    TRAININGS ||--o{ TRAINING_WAITLISTS : "queues for"
+    CERTIFICATES ||--o{ CERTIFICATE_VERIFICATION_EVENTS : "looked up via"
+    CERTIFICATES ||--o{ COMPLIANCE_REMINDERS : triggers
+    VERIFIER_ACCOUNTS ||--o{ CERTIFICATE_VERIFICATION_EVENTS : "bulk verifies"
+
+    POSITIONS ||--o{ POSITION_LEGACY_ALIASES : "maps legacy titles"
+
+    COMPANIES ||--o{ SSO_CONNECTIONS : "configures SSO"
+    COMPANIES ||--o{ AUDIT_LOG : "scoped in"
+
+    COMPANIES ||--o{ USERS : employs
+    COMPANIES ||--o| COMPANY_SEATS : purchases
+    COMPANIES ||--o{ TRAININGS : "owns (internal only)"
+
+    TRAININGS ||--o{ SYLLABUS_MODULES : contains
+    TRAININGS ||--o{ ENROLLMENTS : "enrolled via"
+    TRAININGS ||--o{ STAFF_ASSIGNMENTS : "assigned staff"
+    TRAININGS ||--o{ CERTIFICATES : issues
+    TRAININGS ||--o{ TRAINING_RELATED_TRAININGS : "curated as related to"
+    TRAININGS }o--o| CERTIFICATION_SCHEMES : "prepares for (optional)"
+    CERTIFICATES }o--o| CERTIFICATION_SCHEMES : "earned (optional)"
+    CERTIFICATION_SCHEMES ||--o{ EXAM_EVENTS : "scheduled as"
+    CERTIFICATION_SCHEMES ||--o{ ELIGIBILITY_VERIFICATIONS : gates
+    CERTIFICATION_SCHEMES ||--o{ EXAM_REGISTRATIONS : "registered for"
+    CERTIFICATION_SCHEMES ||--o{ QUESTION_BANKS : "owns (nullable — null = general bank)"
+    CERTIFICATION_SCHEMES ||--o{ EXAM_DEFINITIONS : "defines exam for"
+    QUESTION_BANKS ||--o{ QUESTIONS : contains
+    EXAM_DEFINITIONS }o--o{ QUESTIONS : "references (fixed mode)"
+    USERS ||--o{ ELIGIBILITY_VERIFICATIONS : submits
+    USERS ||--o{ EXAM_REGISTRATIONS : registers
+    EXAM_EVENTS ||--o{ EXAM_REGISTRATIONS : "booked via"
+    ELIGIBILITY_VERIFICATIONS ||--o| EXAM_REGISTRATIONS : "unlocks (if direct_verified)"
+    USERS ||--o{ ACCESS_REQUESTS : submits
+    COMPANIES ||--o{ ACCESS_REQUESTS : "requested for (optional)"
+    USERS ||--o{ ACCESS_REQUESTS : "decides (operator, optional)"
+    USERS ||--o| VERIFIER_ACCOUNTS : "owns (if verifier)"
+    ENROLLMENTS ||--o| EXAM_REGISTRATIONS : "completes into (if training_completion)"
+    EXAM_REGISTRATIONS ||--o{ EXAM_ATTEMPTS : "sat via"
+
+    SYLLABUS_MODULES ||--o{ SYLLABUS_TOPICS : contains
+    SYLLABUS_MODULES ||--o{ LESSONS : contains
+
+    LESSONS ||--o{ LESSON_SLIDES : "has (if slides)"
+    LESSONS ||--o{ QUIZ_QUESTIONS : "has (if quiz)"
+    LESSONS ||--o{ LESSON_PROGRESS : tracked_by
+    LESSONS ||--o{ QUIZ_ATTEMPTS : attempted_via
+    LESSONS ||--o{ EXERCISE_SUBMISSIONS : submitted_via
+
+    ENROLLMENTS ||--o{ LESSON_PROGRESS : tracks
+
+    CERTIFICATES ||--o{ CPD_CYCLES : "requires (if applicable)"
+    CERTIFICATES ||--o{ COMPETENCY_CURRENCY_ATTESTATIONS : "requires (if non-CPD)"
+    CPD_CYCLES ||--o{ CPD_ACTIVITIES : logs
+
+    MEMBERSHIPS ||--o{ MEMBERSHIP_INVOICES : bills
+
+    USERS ||--o{ VERIFICATION_REQUESTS : "receives request about"
+    VERIFIER_ACCOUNTS ||--o{ VERIFICATION_REQUESTS : sends
+    VERIFIER_ACCOUNTS ||--o{ VERIFIER_SEARCH_HISTORY : performs
+
+    USERS {
+        uuid id PK
+        text full_name
+        text email
+        text phone
+        enum user_type
+        uuid company_id FK
+        uuid position_id FK
+        int years_experience
+    }
+
+    POSITIONS {
+        uuid id PK
+        text slug
+        text label
+        text category
+        boolean is_hr_family
+        boolean is_active
+        boolean is_system
+    }
+
+    POSITION_LEGACY_ALIASES {
+        text alias PK
+        uuid position_id FK
+    }
+
+    AUDIT_LOG {
+        uuid id PK
+        uuid actor_user_id FK
+        text actor_role
+        text action
+        text entity_type
+        uuid entity_id
+        uuid company_id FK
+        jsonb metadata
+    }
+
+    SSO_CONNECTIONS {
+        uuid id PK
+        uuid company_id FK
+        enum provider
+        enum status
+        boolean enforced
+    }
+
+    EMPLOYEE_PROFILES {
+        uuid user_id PK
+        text employee_id
+        text department
+    }
+
+    COMPANIES {
+        uuid id PK
+        text name
+        enum source
+        enum status
+        numeric satisfaction_score
+    }
+
+    TRAININGS {
+        uuid id PK
+        text title
+        enum visibility
+        uuid owner_company_id FK
+        uuid certification_scheme_id FK
+        int recurrence_months
+        enum status
+    }
+
+    CERTIFICATION_SCHEMES {
+        uuid id PK
+        text name
+        text issuer
+        enum scheme_type
+        text language
+        boolean requires_eligibility_verification
+        numeric verification_fee
+        int verification_refund_pct
+        numeric exam_fee
+        enum status
+    }
+
+    ELIGIBILITY_VERIFICATIONS {
+        uuid id PK
+        uuid user_id FK
+        uuid certification_scheme_id FK
+        jsonb evidence_file_urls
+        enum verification_fee_payment_status
+        numeric refund_amount
+        enum status
+        uuid reviewed_by FK
+    }
+
+    EXAM_EVENTS {
+        uuid id PK
+        uuid certification_scheme_id FK
+        timestamp scheduled_at
+        enum mode
+        int capacity
+        int seats_taken
+    }
+
+    EXAM_REGISTRATIONS {
+        uuid id PK
+        uuid user_id FK
+        uuid certification_scheme_id FK
+        uuid exam_event_id FK
+        enum source
+        uuid enrollment_id FK
+        uuid eligibility_verification_id FK
+        enum exam_fee_payment_status
+    }
+
+    EXAM_ATTEMPTS {
+        uuid id PK
+        uuid exam_registration_id FK
+        numeric auto_score
+        enum decision
+        uuid examiner_id FK
+        text examiner_comment
+    }
+
+    QUESTION_BANKS {
+        uuid id PK
+        uuid certification_scheme_id FK
+        text name
+        text language
+    }
+
+    QUESTIONS {
+        uuid id PK
+        uuid question_bank_id FK
+        enum type
+        text stem
+        jsonb options
+        int correct_index
+        jsonb correct_indexes
+        enum difficulty
+        text topic
+        jsonb tags
+        int points
+        enum status
+    }
+
+    EXAM_DEFINITIONS {
+        uuid id PK
+        uuid certification_scheme_id FK
+        text name
+        int version
+        int duration_minutes
+        int passing_score
+        int max_attempts
+        enum selection_mode
+        jsonb question_ids
+        enum status
+    }
+
+    TRAINING_RELATED_TRAININGS {
+        uuid training_id FK
+        uuid related_training_id FK
+        enum source
+        uuid created_by FK
+    }
+
+    ACCESS_REQUESTS {
+        uuid id PK
+        uuid user_id FK
+        uuid company_id FK
+        enum request_type
+        enum status
+        timestamp submitted_at
+        uuid decided_by FK
+        enum activation_fee_status
+        numeric activation_fee_amount
+    }
+
+    VERIFIER_ACCOUNTS {
+        uuid id PK
+        text company_name
+        enum plan
+        numeric full_access_price
+        date full_access_expires_at
+    }
+
+    ENROLLMENTS {
+        uuid id PK
+        uuid user_id FK
+        uuid training_id FK
+        enum status
+        date deadline
+        boolean completed_on_time
+    }
+
+    CERTIFICATES {
+        uuid id PK
+        text certificate_number
+        uuid user_id FK
+        uuid certification_scheme_id FK
+        uuid training_id FK
+        boolean requires_cpd
+        enum status
+        date next_relevance_check_date
+    }
+
+    CERTIFICATE_VERIFICATION_EVENTS {
+        uuid id PK
+        uuid certificate_id FK
+        enum channel
+        uuid verifier_account_id FK
+    }
+
+    TRAINING_WAITLISTS {
+        uuid id PK
+        uuid training_id FK
+        uuid user_id FK
+        enum status
+    }
+
+    UPSELL_IMPRESSIONS {
+        uuid id PK
+        uuid user_id FK
+        enum upsell_key
+        timestamp shown_at
+        timestamp clicked_at
+        timestamp converted_at
+    }
+
+    COMPLIANCE_REMINDERS {
+        uuid id PK
+        uuid user_id FK
+        uuid certificate_id FK
+        enum kind
+        date due_date
+        int offset_days
+    }
+
+    ORDERS {
+        uuid id PK
+        uuid buyer_user_id FK
+        uuid buyer_company_id FK
+        enum buyer_type
+        enum status
+        numeric total_amount
+        timestamp paid_at
+    }
+
+    ORDER_ITEMS {
+        uuid id PK
+        uuid order_id FK
+        uuid training_id FK
+        enum delivery_format
+        numeric unit_price
+        int qty
+    }
+
+    CATALOG_SEARCH_EVENTS {
+        uuid id PK
+        text query
+        uuid user_id FK
+        int results_count
+        uuid clicked_training_id FK
+    }
+
+    COMPETENCY_CURRENCY_ATTESTATIONS {
+        uuid id PK
+        uuid certificate_id FK
+        enum evidence_type
+        enum verified_by
+        uuid cosigned_by_user_id FK
+    }
+
+    MEMBERSHIPS {
+        uuid id PK
+        uuid user_id FK
+        enum plan
+        date renewal_date
+        boolean auto_renew
+    }
+
+    PORTFOLIO_SETTINGS {
+        uuid user_id PK
+        boolean is_public
+        enum consent_level
+    }
+
+    PROFILE_VIEWS {
+        uuid id PK
+        uuid participant_user_id FK
+        uuid viewer_verifier_account_id FK
+        enum source
+    }
+
+    VERIFIER_ACCOUNTS {
+        uuid id PK
+        text company_name
+        enum plan
+    }
+
+    VERIFICATION_REQUESTS {
+        uuid id PK
+        uuid verifier_account_id FK
+        uuid participant_user_id FK
+        enum status
+    }
+
+    VERIFIER_SEARCH_HISTORY {
+        uuid id PK
+        uuid verifier_account_id FK
+        text competency_searched
+        boolean matched
+    }
+
+    REPORT_GENERATIONS {
+        uuid id PK
+        uuid generated_by_user_id FK
+        enum portal
+        jsonb sections
+    }
