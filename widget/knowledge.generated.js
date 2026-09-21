@@ -32,7 +32,7 @@ export const GENERATED_RULES = [
   },
   {
     id: 'gen-getting-started',
-    match: ['mulai dari mana', 'harus mulai', 'mulai darimana', 'darimana', 'langkah pertama', 'saya harus review apa', 'panduan review', 'cara review'],
+    match: ['mulai dari mana', 'harus mulai', 'mulai darimana', 'darimana', 'langkah pertama', 'saya harus review apa', 'panduan review', 'cara review', 'cara masuk', 'cara login', 'bagaimana cara masuk', 'gimana caranya masuk'],
     classification: 'ANSWERED_FROM_SOURCE',
     sources: ['ROLES'],
     answer: () => `Mulai dari persona: Sign In sebagai salah satu dari 7 akun demo (Participant, Corporate Admin, Operator, Employer / Verifier, Tutor / Examiner, Super Admin, Management), lalu telusuri 38 modul yang ada. Untuk review terstruktur: pakai tab Readiness di widget ini — centang tiap area setelah Anda mengujinya — dan catat apa pun yang janggal di tab Findings supaya jadi structured evidence, bukan opini. Tanya "menu <persona>" untuk tahu apa yang dilihat tiap peran. Sumber: tests/roles.py.`,

@@ -142,8 +142,12 @@ rules.push({
 
 rules.push({
   id: 'gen-getting-started',
+  // 'cara masuk'/'cara login' added 2026-09-21: the collector showed 6 of the
+  // 8 questions ever asked here came from the signed-out landing page, where
+  // "how do I get in?" is the obvious first thing to ask — and it scored 0.
   match: ['mulai dari mana', 'harus mulai', 'mulai darimana', 'darimana', 'langkah pertama',
-          'saya harus review apa', 'panduan review', 'cara review'],
+          'saya harus review apa', 'panduan review', 'cara review',
+          'cara masuk', 'cara login', 'bagaimana cara masuk', 'gimana caranya masuk'],
   sources: ['ROLES'],
   answerText: `Mulai dari persona: Sign In sebagai salah satu dari ${personas.length} akun demo ` +
     `(${personas.map((p) => p.roleLabel).join(', ')}), lalu telusuri ${allNav.length} modul yang ada. ` +
