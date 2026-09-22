@@ -175,5 +175,65 @@ lucide-react/dist/esm/lucide-react.mjs:
 */
 
 </script>
+<script>
+(() => {
+  const STORAGE_KEY = 'deacademy_state';
+  const hasStorage = () => typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
+  
+  const saveState = (state) => {
+    if (!hasStorage()) return;
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch { /* quota */ }
+  };
+  
+  const loadState = () => {
+    if (!hasStorage()) return null;
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+  };
+  
+  // Save filter selections (period, segment, category)
+  const saveFilter = (key, value) => {
+    const state = loadState() || {};
+    state.filters = state.filters || {};
+    state.filters[key] = value;
+    saveState(state);
+  };
+  
+  const getFilter = (key) => {
+    const state = loadState();
+    return state?.filters?.[key] || null;
+  };
+  
+  // Track select changes for filter persistence
+  document.addEventListener('change', (e) => {
+    const select = e.target;
+    if (select.tagName === 'SELECT') {
+      const label = select.previousElementSibling?.textContent || select.getAttribute('aria-label') || '';
+      const key = label.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+      if (key) saveFilter(key, select.value);
+    }
+  });
+  
+  // Track navigation via sidebar clicks
+  document.addEventListener('click', (e) => {
+    const navBtn = e.target.closest('nav button');
+    if (navBtn) {
+      const text = navBtn.textContent?.trim();
+      if (text) {
+        const state = loadState() || {};
+        state.lastNav = text;
+        saveState(state);
+      }
+    }
+  });
+  
+  // Expose for React integration
+  window.__deacademy_persist = { saveFilter, getFilter, loadState, saveState };
+})();
+</script>
 </body>
 </html>
